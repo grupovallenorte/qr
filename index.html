@@ -14,7 +14,7 @@
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="google" content="notranslate">
-    
+
     <script src="https://davidshimjs.github.io/qrcodejs/qrcode.min.js"></script>
     <style>
         /* Estilo para centrar el contenedor del código QR */
@@ -30,12 +30,35 @@
             display: none;
             margin-top: 10px;
         }
+
+        input {
+            font-size: 18px;
+            text-align: center;
+            height: 50px;
+            outline: none;
+            border: 2px solid black;
+            border-radius: 8px;
+        }
+
+        input:focus {
+            border: 2px solid rgb(63, 214, 21);
+        }
+
+        button {
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            color: white;
+            background-color: black;
+            height: 50px;
+            border: 0;
+        }
     </style>
 </head>
 
 <body>
     <h2 style="text-align: center;">Generador de Código QR Personalizado</h2>
-    <div style="text-align: center;">
+    <div style="text-align: center; display: flex; flex-direction: column; gap: 10px;">
         <input type="text" id="texto" placeholder="Introduce el texto">
         <button onclick="generarQR()">Generar Código QR</button>
     </div>
