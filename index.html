@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generador de Código QR Personalizado</title>
+    <script src="https://davidshimjs.github.io/qrcodejs/qrcode.min.js"></script>
+    <style>
+        /* Estilo para centrar el contenedor del código QR */
+        #contenedor-qr {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px; /* Ajusta la altura según tus necesidades */
+        }
+        #descargar {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Generador de Código QR Personalizado</h2>
+    <div style="text-align: center;">
+        <input type="text" id="texto" placeholder="Introduce el texto">
+        <button onclick="generarQR()">Generar Código QR</button>
+    </div>
+    <div id="contenedor-qr">
+        <div id="qrcode"></div>
+    </div>
+    <div style="text-align: center;">
+        <a id="descargar" download="codigo_qr.png">Descargar Código QR</a>
+    </div>
+
+    <script>
+        function generarQR() {
+            var texto = document.getElementById("texto").value;
+            var contenedor = document.getElementById("qrcode");
+            contenedor.innerHTML = ""; // Limpiar el contenedor antes de generar un nuevo código
+            var qr = new QRCode(contenedor, {
+                text: texto,
+                width: 256,  // Ancho del código QR
+                height: 256, // Alto del código QR
+                colorDark : "#000000", // Color del código QR
+                colorLight : "#ffffff", // Color de fondo
+                correctLevel : QRCode.CorrectLevel.H // Nivel de corrección de errores
+            });
+
+            // Esperar a que el QR se genere para obtener el elemento img
+            setTimeout(function() {
+                var imgElement = contenedor.getElementsByTagName("img")[0];
+                if (imgElement) {
+                    var dataUrl = imgElement.src;
+                    var descargar = document.getElementById("descargar");
+                    descargar.href = dataUrl;
+                    descargar.style.display = "inline";
+                }
+            }, 300);
+        }
+    </script>
+</body>
+</html>
